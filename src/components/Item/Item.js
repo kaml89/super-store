@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import './Item.css';
-import RatingStars from '../stars/RatingStars';
+import RatingStars from '../Stars/RatingStars';
 
 const Item = (props) => {
     return (
