@@ -3,8 +3,6 @@ import itemService from '../../services/item';
 import Item from '../item/Item';
 import './Home.css'
 
-import axios from 'axios';
-
 const Home = (props) => {
 
     const [ items, setItems ] = useState([]);
@@ -12,7 +10,6 @@ const Home = (props) => {
     useEffect(async () => {
         
         const response = await itemService.get();
-        console.log(response.items)
         setItems(response.items)
         
     }, []);
@@ -25,6 +22,7 @@ const Home = (props) => {
                     imageUrl={item.imageUrl}
                     name={item.name}
                     price={item.price}
+                    avgRating={item.avgRating}
                     
                 />
                 )}
