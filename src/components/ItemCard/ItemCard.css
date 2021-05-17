@@ -1,0 +1,11 @@
+.item-card {
+    border: 1px solid black;
+    height: 320px;
+    width: 300px;
+    display: grid;
+    
+}
+
+.item-img {
+    width: 200px;
+}

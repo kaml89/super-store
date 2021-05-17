@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import itemService from '../../services/item';
-import Item from '../Item/Item';
 import ProductsList from '../ProductsList/ProductsList';
 import Search from '../Search/Search'
 import './Home.css'

@@ -12,10 +12,15 @@ const Deals = () => {
         
     }, []);
 
-    console.log(itemsOnSale)
+    //console.log(itemsOnSale)
 
     return (
-        <ProductsList items={itemsOnSale} />
+        <div>
+        {
+            itemsOnSale.length === 0 ? 'Currenty there are no items on sale :(' :
+            <ProductsList items={itemsOnSale} />
+        }
+        </div>
     );
 }
 
