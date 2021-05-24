@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    /* flex-direction: row; */
+}
+
+.product-img {
+    width: 50%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* object-fit: scale-down; */
+}
+
+.product-img > img {
+    height: 300px;
+    width: 300px;
+    object-fit: scale-down;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    width: 50%;
+}
