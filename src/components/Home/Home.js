@@ -7,17 +7,28 @@ import './Home.css'
 const Home = (props) => {
 
     const [ items, setItems ] = useState([]);
+    // const [ searchQuery, setSearchQuery ] = useState('');
 
     useEffect(async () => {
         
         const response = await itemService.get();
-        setItems(response.items)
+        setItems(response.items);
         
     }, []);
+
+    // useEffect(async () => {
+    //     const response = await itemService.get({ 'q': searchQuery })
+    //     setItems(response.items);
+    // }, [ searchQuery ])
+
+    const handleSearch = async (query) => {
+        const response = await itemService.get({ 'q': query })
+        setItems(response.items);
+    };
     
     return (
         <div>
-            <Search />
+            <Search handleSearch={ handleSearch }/>
             <ProductsList items = {items}/>
         </div>
  
