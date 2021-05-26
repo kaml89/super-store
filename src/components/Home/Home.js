@@ -9,21 +9,21 @@ const Home = (props) => {
     const [ items, setItems ] = useState([]);
     // const [ searchQuery, setSearchQuery ] = useState('');
 
-    useEffect(async () => {
-        
-        const response = await itemService.get();
+    const fetchData = async (params) => {
+        const response = await itemService.get(params);
         setItems(response.items);
+    };
+
+    useEffect(() => {
+        fetchData()
         
     }, []);
 
-    // useEffect(async () => {
-    //     const response = await itemService.get({ 'q': searchQuery })
-    //     setItems(response.items);
-    // }, [ searchQuery ])
 
-    const handleSearch = async (query) => {
-        const response = await itemService.get({ 'q': query })
-        setItems(response.items);
+    const handleSearch = (query) => {
+        // const response = await itemService.get({ 'q': query })
+        // setItems(response.items);
+        fetchData({ 'q': query })
     };
     
     return (
@@ -32,18 +32,6 @@ const Home = (props) => {
             <ProductsList items = {items}/>
         </div>
  
-        // <div className='items-list'>
-        //     { items.map(item => 
-        //         <Item 
-        //             key={item._id} 
-        //             imageUrl={item.imageUrl}
-        //             name={item.name}
-        //             price={item.price}
-        //             avgRating={item.avgRating}
-                    
-        //         />
-        //         )}
-        // </div>
     );
 }
 
