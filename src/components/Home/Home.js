@@ -9,7 +9,7 @@ const Home = (props) => {
     const [ items, setItems ] = useState([]);
     // const [ searchQuery, setSearchQuery ] = useState('');
 
-    const fetchData = async (params) => {
+    const fetchData = async (params = {}) => {
         const response = await itemService.get(params);
         setItems(response.items);
     };
