@@ -24,10 +24,8 @@ const Item = () => {
 
     useEffect(() => {
         const fetchItem = async () => {
-            console.log(1)
             const response = await itemService.getById(itemId);
             setItem(response);
-            console.log(response);
         }
         fetchItem();
     }, []);
@@ -35,8 +33,6 @@ const Item = () => {
 
     return (
         <div className='container'>
-                {console.log(3)}
-
             <div className='product-img'>
                 <img src={ item.imageUrl }/>
             </div>
