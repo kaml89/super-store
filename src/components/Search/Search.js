@@ -15,8 +15,8 @@ const Search = ({ handleSearch }) => {
     const handleClear = (e) => {
         e.preventDefault();
         setQuery('');
-        handleSearch(query);
         queryInput.current.value = '';
+        handleSearch(query);
     };
     
 

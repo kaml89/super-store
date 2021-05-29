@@ -6,10 +6,13 @@ const Deals = () => {
 
     const [ itemsOnSale, setItemsOnSale ] = useState([]);
 
-    useEffect(async () => {
+    const fetchData = async () => {
         const response = await itemService.get({ 'isOnSale': true });
         setItemsOnSale(response.items)
-        
+    };
+
+    useEffect(() => {
+        fetchData();
     }, []);
 
     //console.log(itemsOnSale)
@@ -17,8 +20,8 @@ const Deals = () => {
     return (
         <div>
         {
-            itemsOnSale.length === 0 ? 'Currenty there are no items on sale :(' :
-            <ProductsList items={itemsOnSale} />
+            itemsOnSale.length !== 0 ? <ProductsList items={itemsOnSale} /> :
+                'Currenty there are no items on sale :('
         }
         </div>
     );

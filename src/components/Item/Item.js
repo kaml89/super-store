@@ -22,13 +22,14 @@ const Item = () => {
 
     };
 
+    const fetchItem = async () => {
+        const response = await itemService.getById(itemId);
+        setItem(response);
+    }
+
     useEffect(() => {
-        const fetchItem = async () => {
-            const response = await itemService.getById(itemId);
-            setItem(response);
-        }
         fetchItem();
-    }, []);
+    }, [itemId]);
 
 
     return (
