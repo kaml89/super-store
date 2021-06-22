@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import itemService from '../services/item'; 
-import ProductsList from './ProductsList/ProductsList'
+import itemService from '../../services/item'; 
+import ProductsList from '../ProductsList/ProductsList'
 
 const Deals = () => {
 
