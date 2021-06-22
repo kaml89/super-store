@@ -10,8 +10,8 @@ const Notification = ({ message }) => {
 
 
     useEffect(() => {
-        setVisibility(!visibility);
-    }, [message]);
+        setVisibility(!visibility);// eslint-disable-next-line 
+    }, [ message ]); 
 
     // if( visibility ) {
     //     return (
