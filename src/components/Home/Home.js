@@ -7,11 +7,13 @@ import './Home.css'
 const Home = (props) => {
 
     const [ items, setItems ] = useState([]);
-    // const [ searchQuery, setSearchQuery ] = useState('');
+    const [ isLoading, setIsLoading ] = useState(false);
 
     const fetchData = async (params = {}) => {
+        setIsLoading(true);
         const response = await itemService.get(params);
         setItems(response.items);
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -29,9 +31,14 @@ const Home = (props) => {
     
     return (
         <div>
-            <Search handleSearch={ handleSearch }/>
-            <ProductsList items = {items}/>
+            { isLoading ? <p>Loading</p> : 
+                <div>
+                    <Search handleSearch={ handleSearch }/>
+                    <ProductsList items = { items }/>
+                </div>
+            }
         </div>
+        
  
     );
 }
