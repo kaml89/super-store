@@ -16,4 +16,6 @@ const create = async () => {
 
 };
 
-export default { get, getById, create };
+const itemService = { get, getById, create };
+
+export default itemService;
