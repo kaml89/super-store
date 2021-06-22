@@ -24,11 +24,7 @@ const Item = () => {
         }
 
     };
-
-    const fetchItem = async () => {
-        const response = await itemService.getById(itemId);
-        setItem(response);
-    }
+    
 
     const handleSumbit = (e) => {
         e.preventDefault();
@@ -45,6 +41,10 @@ const Item = () => {
     }
 
     useEffect(() => {
+        const fetchItem = async () => {
+            const response = await itemService.getById(itemId);
+            setItem(response);
+        }
         fetchItem();
     }, [ itemId ]);
 
