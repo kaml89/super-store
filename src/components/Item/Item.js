@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams, withRouter } from "react-router";
+import { useParams } from "react-router";
 import itemService from '../../services/item';
 import RatingStars from '../Stars/RatingStars';
-import Notification from '../Notification/Notification'
 import './Item.css'
 import { useCart } from "../../context/CartContext";
 
@@ -53,7 +52,7 @@ const Item = () => {
     return (
         <div className='container'>
             <div className='product-img'>
-                <img src={ item.imageUrl }/>
+                <img src={ item.imageUrl } alt={ item.name }/>
             </div>
             <div className='info'>
                 <h2 className='name'>{ item.name }</h2>

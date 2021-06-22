@@ -2,7 +2,7 @@ import { useCart } from '../context/CartContext';
 import CartItem from './CartItem/CartItem';
 
 const Cart = () => {
-    const { state: { cart }, removeItem } = useCart();
+    const { state: { cart } } = useCart();
 
 
     return (

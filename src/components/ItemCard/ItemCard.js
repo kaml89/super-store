@@ -8,6 +8,7 @@ const ItemCard = ({ avgRating, imageUrl, name, price, id }) => {
         <div className='item-card'>
             <img className="item-img"
                 src={ imageUrl }
+                alt={ name }
             />
             <div className='item-name'><NavLink to={`/item/${id}`}>{ name }</NavLink></div>
             <RatingStars avgRating={avgRating}/>

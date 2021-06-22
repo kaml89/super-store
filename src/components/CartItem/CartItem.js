@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useCart } from '../../context/CartContext';
 
 const CartItem = ({ item }) => {
@@ -7,7 +6,7 @@ const CartItem = ({ item }) => {
 
     return (
         <div>
-            <img src={ item.imageUrl }/>
+            <img src={ item.imageUrl } alt='img'/>
             <div className='cart-item-info'>
                 <h3 className='cart-item-name'>{ item.name }</h3>
                 <div className='quantity-controller'>
