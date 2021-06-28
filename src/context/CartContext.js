@@ -5,20 +5,34 @@ const CartContext = createContext();
 
 const cartReducer = (state, action) => {
     switch (action.type) {
-        case 'ADD_ITEM':
-            return {
+        case 'ADD_TO_CART':
+            return [
+                ...state, action.item
+            ];
+
+        case 'INCREMENT_QUANTITY': 
+            return [
+                ...state.map(item => item.id === action.id ? 
+                    { ...item, quantity: item.quantity +1 } : 
+                    item
+                )
+            ]
+        
+        case 'DECREMENT_QUANTITY': 
+            return [
+                ...state.map(item => item.id === action.id ? 
+                    { ...item, quantity: item.quantity - 1 } : 
+                    item
+                )
+            ]
+
+        case 'REMOVE_FROM_CART':
+            return [
                 ...state,
-                cart: [...state.cart, action.payload]
-            }
-        case 'REMOVE_ITEM':
-            return {
-                ...state,
-                cart: state.cart.filter(item => item.id !== action.payload)
-            }
+                state.filter(item => item.id !== action.payload)
+            ];
         case 'CLEAR':
-            return {
-                cart: []
-            }
+            return [];
         default: 
             return state;
     }
@@ -26,23 +40,35 @@ const cartReducer = (state, action) => {
 
 
 const CartProvider = ({ children }) => {
-    const initialState = { cart: [] }
+    const initialState = [];
 
-    const [ state, dispatch ] = useReducer(cartReducer, initialState);
+    const [ cart, dispatch ] = useReducer(cartReducer, initialState);
 
     const addItem = (item) => {
-        // if (item in cart): change quantity
-        // else: add new item: dispatch('REMOVE_ITEM')
-        // if
-        //
-        dispatch({ type: 'ADD_ITEM', payload: item });
+        const cartItem = cart.find(cartItem => cartItem.id === item.id);
+        if ( cartItem ) {
+            dispatch({ type: 'INCREMENT_QUANTITY', id: item.id})
+        } else {
+            dispatch({ type: 'ADD_TO_CART', item });
+
+        }
     }
 
     const removeItem = (id) => {
-        dispatch({ type: 'REMOVE_ITEM', payload: id})
+        const cartItem = cart.find(cartItem => cartItem.id === id);
+        if(cartItem.quantity === 1) {
+            dispatch({ type: 'REMOVE_FROM_CART', payload: id})
+        } else {
+            dispatch({ type: 'DECREMENT_QUANTITY', payload: id})
+        }
     }
 
-    return <CartContext.Provider value={{ state, addItem, removeItem}}>{ children }</CartContext.Provider>
+    const getTotal = ( ) => 
+         cart.
+             reduce((total, item) => total + (item.price * item.quantity), 0)
+    
+
+    return <CartContext.Provider value={{ cart, addItem, removeItem, getTotal }}>{ children }</CartContext.Provider>
 }
 
 const useCart = () => {
