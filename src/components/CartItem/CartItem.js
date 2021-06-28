@@ -2,7 +2,6 @@ import { useCart } from '../../context/CartContext';
 
 const CartItem = ({ item }) => {
     const { removeItem } = useCart();
-    console.log(item.name, item.stockCount, item.quantity, item.id, item.price)
 
     return (
         <div>

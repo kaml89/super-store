@@ -35,6 +35,7 @@ const Home = (props) => {
                 <div>
                     <Search handleSearch={ handleSearch }/>
                     <ProductsList items = { items }/>
+                    {console.log('Home')}
                 </div>
             }
         </div>
