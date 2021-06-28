@@ -11,7 +11,7 @@ const Item = () => {
     const [ item, setItem ] = useState({})
     const [ quantity, setQuantity ] = useState(0);
     const [ message, setMessage ] = useState(null)
-    const { state: { cart }, addItem } = useCart();
+    const { cart, addItem } = useCart();
 
     const handleChange = (e) => {
         if (e.target.value > item.stockCount) {
@@ -64,7 +64,7 @@ const Item = () => {
                     <button>Add to Cart</button>
                 </form>
                 <p>{message}</p>
-                <p>{ console.log(cart) }</p>
+                <p>{ console.log('Item') }</p>
                 {/* <Notification message={ message }/> */}
                 
             </div>

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
 const Navbar = () => {
-    const { state: { cart }} = useCart();
+    const { cart } = useCart();
     const getTotalCartItems = ( cart ) => {
         return cart
                     .map(item => item.quantity)
