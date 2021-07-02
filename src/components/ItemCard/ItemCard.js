@@ -23,10 +23,8 @@ const ItemCard = ({ avgRating, imageUrl, name, price, id }) => {
 ItemCard.propTypes = {
     avgRating: PropTypes.number.isRequired,
     imageUrl: PropTypes.string.isRequired,
-    // isOnSale: PropTypes.bool.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    // stockCount: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired
 }
 

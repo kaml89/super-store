@@ -1,4 +1,5 @@
 import { useCart } from '../../context/CartContext';
+import PropTypes from 'prop-types';
 
 const CartItem = ({ item }) => {
     const { removeItem } = useCart();
@@ -18,6 +19,7 @@ const CartItem = ({ item }) => {
                         //    onChange={ handleChange }
                     />
                     <button onClick={ () => removeItem(item.id) }>Remove</button>
+                    <p>{ item.quantity }</p>
                 </div>
             </div>
             <h2 className='cart-item-price'>{ item.price }</h2>
@@ -25,13 +27,16 @@ const CartItem = ({ item }) => {
     );
 };
 
-// CartItem.propTypes = {
-//     imageUrl: PropTypes.string.isRequired,
-//     name: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     stockCount: PropTypes.number.isRequired,
-//     id: PropTypes.string.isRequired,
-//     quantity: PropTypes.string.isRequired
-// }
+CartItem.propTypes = {
+    item: PropTypes.shape({
+        imageUrl: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        price: PropTypes.number.isRequired,
+        stockCount: PropTypes.number.isRequired,
+        id: PropTypes.string.isRequired,
+        quantity: PropTypes.string.isRequired
+    })
+}
+
 
 export default CartItem;
