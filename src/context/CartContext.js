@@ -20,7 +20,7 @@ const cartReducer = (state, action) => {
         
         case 'DECREMENT_QUANTITY': 
             return [
-                ...state.map(item => item.id === action.id ? 
+                ...state.map(item => item.id === action.payload ? 
                     { ...item, quantity: item.quantity - 1 } : 
                     item
                 )
@@ -28,8 +28,7 @@ const cartReducer = (state, action) => {
 
         case 'REMOVE_FROM_CART':
             return [
-                ...state,
-                state.filter(item => item.id !== action.payload)
+                ...state.filter(item => item.id !== action.payload)
             ];
         case 'CLEAR':
             return [];
@@ -58,8 +57,10 @@ const CartProvider = ({ children }) => {
         const cartItem = cart.find(cartItem => cartItem.id === id);
         if(cartItem.quantity === 1) {
             dispatch({ type: 'REMOVE_FROM_CART', payload: id})
+            
         } else {
             dispatch({ type: 'DECREMENT_QUANTITY', payload: id})
+            console.log(cartItem.quantity)
         }
     }
 
