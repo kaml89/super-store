@@ -9,9 +9,9 @@ const Item = () => {
     
     const { itemId } = useParams();
     const [ item, setItem ] = useState({})
-    const [ quantity, setQuantity ] = useState(0);
-    const [ message, setMessage ] = useState(null)
-    const { cart, addItem } = useCart();
+    // const [ quantity, setQuantity ] = useState(0);
+    // const [ message, setMessage ] = useState(null)
+    const { addItem } = useCart();
 
     // const handleChange = (e) => {
     //     if (e.target.value > item.stockCount) {
@@ -61,7 +61,6 @@ const Item = () => {
                     {/* Quantity: <input type="number" className='quantity' min="1" max={ item.stockCount } onChange={ handleChange }/> */}
                     <button>Add to Cart</button>
                 </form>
-                <p>{message}</p>
                 <p>{ console.log('Item') }</p>
                 {/* <Notification message={ message }/> */}
                 
