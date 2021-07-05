@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import itemService from '../../services/item';
-import ProductsList from '../ProductsList/ProductsList';
-import Search from '../Search/Search'
+import ProductsList from '../../components/ProductsList/ProductsList';
+import Search from '../../components/Search/Search'
 import './Home.css'
 
 const Home = (props) => {

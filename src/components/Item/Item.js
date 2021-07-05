@@ -13,17 +13,17 @@ const Item = () => {
     const [ message, setMessage ] = useState(null)
     const { cart, addItem } = useCart();
 
-    const handleChange = (e) => {
-        if (e.target.value > item.stockCount) {
-            setMessage('Not enough items in stock');
-        } else if (e.target.value < 0) {
-            setMessage("Quantity number can't be negative")
-        } else {
-            setMessage(null);
-            setQuantity(parseInt(e.target.value));
-        }
+    // const handleChange = (e) => {
+    //     if (e.target.value > item.stockCount) {
+    //         setMessage('Not enough items in stock');
+    //     } else if (e.target.value < 0) {
+    //         setMessage("Quantity number can't be negative")
+    //     } else {
+    //         setMessage(null);
+    //         setQuantity(parseInt(e.target.value));
+    //     }
 
-    };
+    // };
     
 
     const handleSumbit = (e) => {
@@ -34,10 +34,8 @@ const Item = () => {
             imageUrl: item.imageUrl,
             price: item.price,
             stockCount: item.stockCount,
-            quantity   
+            quantity: 1
         })
-
-        console.log(cart);
     }
 
     useEffect(() => {
@@ -60,7 +58,7 @@ const Item = () => {
                 <p className='description'>{ item.description }</p>
                 <h3 className='price'>{ item.price }</h3>
                 <form onSubmit={ handleSumbit }>
-                    Quantity: <input type="number" className='quantity' min="1" max={ item.stockCount } onChange={ handleChange }/>
+                    {/* Quantity: <input type="number" className='quantity' min="1" max={ item.stockCount } onChange={ handleChange }/> */}
                     <button>Add to Cart</button>
                 </form>
                 <p>{message}</p>

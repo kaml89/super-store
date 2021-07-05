@@ -2,7 +2,7 @@ import { useCart } from '../../context/CartContext';
 import PropTypes from 'prop-types';
 
 const CartItem = ({ item }) => {
-    const { removeItem } = useCart();
+    const { addItem, removeItem } = useCart();
 
     return (
         <div>
@@ -11,14 +11,16 @@ const CartItem = ({ item }) => {
                 <h3 className='cart-item-name'>{ item.name }</h3>
                 <div className='quantity-controller'>
                     <p>Quantity:</p>
-                    <input type="number" 
+                    {/* <input type="number" 
                            className='quantity' 
                            value={ item.quantity } 
                            min="1" 
                            max={ item.stockCount } 
                         //    onChange={ handleChange }
-                    />
-                    <button onClick={ () => removeItem(item.id) }>Remove</button>
+                    /> */}
+                    <button onClick={ () => addItem(item)}>+</button>
+                    <button onClick={ () => removeItem(item.id)}>-</button>
+                    <button onClick={ () => removeItem(item.id) }>X</button>
                     <p>{ item.quantity }</p>
                 </div>
             </div>

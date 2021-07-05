@@ -12,8 +12,14 @@ const cartReducer = (state, action) => {
 
         case 'INCREMENT_QUANTITY': 
             return [
+                // ...state.filter(item => item.id !== action.item.id),
+                // { 
+                //     ...action.item,
+                //     quantity: action.item.quantity >= action.item. action.item.quantity + 1
+                // }
                 ...state.map(item => item.id === action.id ? 
-                    { ...item, quantity: item.quantity +1 } : 
+                    { ...item,
+                      quantity: item.quantity < item.stockCount ? item.quantity + 1 : item.quantity } : 
                     item
                 )
             ]
@@ -66,7 +72,7 @@ const CartProvider = ({ children }) => {
 
     const getTotal = ( ) => 
          cart.
-             reduce((total, item) => total + (item.price * item.quantity), 0)
+             reduce((total, item) => total + (item.price * item.quantity), 0).toFixed(2)
     
 
     return <CartContext.Provider value={{ cart, addItem, removeItem, getTotal }}>{ children }</CartContext.Provider>
