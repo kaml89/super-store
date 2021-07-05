@@ -1,5 +1,6 @@
 import { useCart } from '../context/CartContext';
 import CartItem from './CartItem/CartItem';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
     const { cart, getTotal} = useCart();
@@ -12,7 +13,10 @@ const Cart = () => {
                 { cart.map(item => <li> <CartItem item={ item }/> </li>)}
             </ul>
             <h2>{ getTotal() }</h2>
-            {console.log('kamil')}
+            <Link to='/checkout'>
+                <button>Checkout</button>
+            </Link>
+            
         </div>
         
     );

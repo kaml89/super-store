@@ -6,7 +6,9 @@ import Home from './components/Home/Home'
 import Cart from './components/Cart'
 import Deals from './components/Deals/Deals'
 import Item from './components/Item/Item';
+import Checkout from './components/Checkout/Checkout';
 import { CartProvider } from './context/CartContext'
+
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
             <Route exact path='/' component={ Home }/>
             <Route path='/deals' component={ Deals }/>
             <Route path='/cart' component={ Cart }/>
+            <Route path='/checkout' component={ Checkout }/>
             <Route path='/item/:itemId' component={ Item }/>
+            
           </Switch>
         </Router>
       </CartProvider>
