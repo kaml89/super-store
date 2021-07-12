@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import itemService from '../../services/item';
 import RatingStars from '../Stars/RatingStars';
+import Button from '../Button/Button';
 import './Item.css'
 import { useCart } from "../../context/CartContext";
+
 
 const Item = () => {
     
@@ -26,8 +28,8 @@ const Item = () => {
     // };
     
 
-    const handleSumbit = (e) => {
-        e.preventDefault();
+    const handleSubmit = () => {
+        // e.preventDefault();
         addItem({
             name: item.name,
             id: itemId,
@@ -57,10 +59,11 @@ const Item = () => {
                 <RatingStars avgRating = { item.avgRating }/>
                 <p className='description'>{ item.description }</p>
                 <h3 className='price'>{ item.price }</h3>
-                <form onSubmit={ handleSumbit }>
+                {/* <form onSubmit={ handleSumbit }> */}
                     {/* Quantity: <input type="number" className='quantity' min="1" max={ item.stockCount } onChange={ handleChange }/> */}
-                    <button>Add to Cart</button>
-                </form>
+                    <Button onClick = { handleSubmit }
+                            label = 'Add to cart'/>
+                {/* </form> */}
                 <p>{ console.log('Item') }</p>
                 {/* <Notification message={ message }/> */}
                 
