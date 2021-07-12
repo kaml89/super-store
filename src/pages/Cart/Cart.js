@@ -12,7 +12,7 @@ const Cart = () => {
             <ul>
                 { cart.map(item => <li> <CartItem item={ item }/> </li>)}
             </ul>
-            <h2>{ getTotal() }</h2>
+            <h2>${ getTotal() }</h2>
             <Link to='/checkout'>
                 <button>Checkout</button>
             </Link>

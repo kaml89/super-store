@@ -18,14 +18,10 @@ const Home = (props) => {
 
     useEffect(() => {
         fetchData()
-        
     }, []);
 
 
     const handleSearch = (query) => {
-        // const response = await itemService.get({ 'q': query })
-        // setItems(response.items);
-        console.log('kamil')
         fetchData({ 'q': query })
     };
     

@@ -36,7 +36,7 @@ CartItem.propTypes = {
         price: PropTypes.number.isRequired,
         stockCount: PropTypes.number.isRequired,
         id: PropTypes.string.isRequired,
-        quantity: PropTypes.string.isRequired
+        quantity: PropTypes.number.isRequired
     })
 }
 
