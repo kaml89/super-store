@@ -1,20 +1,27 @@
 import PropTypes from 'prop-types';
 import './ItemCard.css';
 import RatingStars from '../Stars/RatingStars';
+import Button from '../Button/Button';
 import { NavLink } from 'react-router-dom';
 
 const ItemCard = ({ avgRating, imageUrl, name, price, id }) => {
     return (
         <div className='item-card'>
-            <img className="item-img"
-                src={ imageUrl }
-                alt={ name }
-            />
-            <div className='item-name'><NavLink to={`/item/${id}`}>{ name }</NavLink></div>
-            <RatingStars avgRating={avgRating}/>
-            <div className='price'>{ price }</div>
-            <NavLink to={`/item/${id}`} className='view-item-btn'>View Item</NavLink>
-            {/* <button className='view-item-btn'>View Item</button> */}
+            <div className='img-wrapper'>
+                <img className="item-card-img"
+                    src={ imageUrl }
+                    alt={ name }
+                />
+            </div>
+            
+            <div className='item-card-details'>
+                <div className='item-card-name'><NavLink to={`/item/${id}`}>{ name }</NavLink></div>
+                <RatingStars avgRating={ avgRating }/>
+                <div className='item-card-price'> ${ price }</div>
+                <NavLink to={`/item/${id}`}>
+                    <Button label='View Item' />
+                </NavLink>
+            </div>
             
         </div>
     );
