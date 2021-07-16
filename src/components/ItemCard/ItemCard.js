@@ -15,7 +15,7 @@ const ItemCard = ({ avgRating, imageUrl, name, price, id }) => {
             </div>
             
             <div className='item-card-details'>
-                <div className='item-card-name'><NavLink to={`/item/${id}`}>{ name }</NavLink></div>
+                <NavLink to={`/item/${id}`} className='item-card-name'>{ name }</NavLink>
                 <RatingStars avgRating={ avgRating }/>
                 <div className='item-card-price'> ${ price }</div>
                 <NavLink to={`/item/${id}`}>

@@ -58,7 +58,7 @@ const Item = () => {
                 <h2 className='name'>{ item.name }</h2>
                 <RatingStars avgRating = { item.avgRating }/>
                 <p className='description'>{ item.description }</p>
-                <h3 className='price'>{ item.price }</h3>
+                <h3 className='price'>${ item.price }</h3>
                 {/* <form onSubmit={ handleSumbit }> */}
                     {/* Quantity: <input type="number" className='quantity' min="1" max={ item.stockCount } onChange={ handleChange }/> */}
                     <Button onClick = { handleSubmit }
