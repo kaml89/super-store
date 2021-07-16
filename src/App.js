@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
-import Navbar from './components/Navbar'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home/Home'
 import Cart from './pages/Cart/Cart'
 import Deals from './pages/Deals/Deals'
 import Item from './components/Item/Item';
 import Checkout from './pages/Checkout/Checkout';
 import { CartProvider } from './context/CartContext'
+import Navigation from './components/Navigation';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     <div className="App">
       <CartProvider>
         <Router>
-          <Navbar />
+          <Navigation />
           <Switch>
             <Route exact path='/' component={ Home }/>
             <Route path='/deals' component={ Deals }/>
