@@ -23,15 +23,17 @@
 }
 
 .item-card-details {
+    height: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-content: space-between;
+    justify-content: space-between;
 }
 
 .item-card-name {
     font-size: 20px;
     text-decoration: none;
+    color: black;
 }
 
 .item-card-price {
