@@ -1,4 +1,4 @@
-.btn {
+.button {
     display: inline-block;
     border: none;
     border-radius: 4px;
@@ -18,11 +18,11 @@
     -moz-appearance: none;
 }
 
-.btn:hover,
-.btn:focus {
+.button:hover,
+.button:focus {
     background: #df6f14;
 }
 
-.btn:active {
+.button:active {
     transform: scale(0.99);
 }
