@@ -4,7 +4,7 @@ import ProductsList from '../../components/ProductsList/ProductsList';
 import Search from '../../components/Search/Search'
 import './Home.css'
 
-const Home = (props) => {
+const Home = () => {
 
     const [ items, setItems ] = useState([]);
     const [ isLoading, setIsLoading ] = useState(false);
@@ -26,12 +26,11 @@ const Home = (props) => {
     };
     
     return (
-        <div>
+        <div className='page-container'>
             { isLoading ? <p>Loading</p> : 
                 <div>
                     <Search handleSearch={ handleSearch }/>
                     <ProductsList items = { items }/>
-                    {console.log('Home')}
                 </div>
             }
         </div>
