@@ -5,11 +5,14 @@ const NotificationContext = createContext();
 
 const NotificationReducer = (state, action) => {
     switch(action.type) {
-        case 'CREATE_NOTIFICATION':
-            return [...state, action.notification];
+        case 'ADD_NOTIFICATION':
+            return [...state, action.newNotification];
 
         case 'REMOVE_NOTIFICATION':
             return [ ...state.filter(item => item.id !== action.id) ]
+        
+        default:
+            return state;
     }
 }
 
@@ -18,13 +21,14 @@ const NotificationProvider = ({ children}) => {
 
     const [ notifications, dispatch ] = useReducer(NotificationReducer, initialState);
 
-    const createNotification = (message) => {
-        const notification = {
+    const addNotification = (message) => {
+        const newNotification = {
             message,
             id: uuidv4()
         }
 
-        dispatch({ type: 'CREATE_NOTIFICATION', notification})
+        dispatch({ type: 'ADD_NOTIFICATION', newNotification})
+        console.log(notifications)
     }
 
     const removeNotification = (id) => {
@@ -34,7 +38,7 @@ const NotificationProvider = ({ children}) => {
     
 
 
-    return <NotificationContext.Provider value={{ notifications, createNotification, removeNotification }}> children </NotificationContext.Provider>
+    return <NotificationContext.Provider value={{ notifications, addNotification, removeNotification }}>{ children }</NotificationContext.Provider>
 }
 
 const useNotification = () => {

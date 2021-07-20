@@ -5,6 +5,7 @@ import RatingStars from '../Stars/RatingStars';
 import Button from '../Button/Button';
 import './Item.css'
 import { useCart } from "../../context/CartContext";
+import { useNotification } from "../../context/NotificationContext";
 
 
 const Item = () => {
@@ -14,6 +15,7 @@ const Item = () => {
     // const [ quantity, setQuantity ] = useState(0);
     // const [ message, setMessage ] = useState(null)
     const { addItem } = useCart();
+    const { addNotification } = useNotification();
 
     // const handleChange = (e) => {
     //     if (e.target.value > item.stockCount) {
@@ -38,6 +40,7 @@ const Item = () => {
             stockCount: item.stockCount,
             quantity: 1
         })
+        addNotification('Item has been succesfully added');
     }
 
     useEffect(() => {
