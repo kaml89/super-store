@@ -1,4 +1,4 @@
-# [super-store] (https://adoring-curran-b9489f.netlify.app/)
+# [super-store](https://adoring-curran-b9489f.netlify.app/)
 
 E-commerce project built in React using create-react-app CLI. List of functionalities includes:
 * Search through list of items
