@@ -1,6 +1,18 @@
-# Getting Started with Create React App
+# [super-store] (https://adoring-curran-b9489f.netlify.app/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+E-commerce project built in React using create-react-app CLI. List of functionalities includes:
+* Search through list of items
+* Find items that are on sale
+* Add items to shopping cart
+* Navigate to items' pages
+
+
+App is using data from third party API [Super Store API](https://gp-super-store-api.herokuapp.com/docs/)
+
+## Technologies
+
+React, React Router, Context API, hooks, Bootstrap, Netlify
+
 
 ## Available Scripts
 
