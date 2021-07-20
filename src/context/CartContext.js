@@ -12,11 +12,6 @@ const cartReducer = (state, action) => {
 
         case 'INCREMENT_QUANTITY': 
             return [
-                // ...state.filter(item => item.id !== action.item.id),
-                // { 
-                //     ...action.item,
-                //     quantity: action.item.quantity >= action.item. action.item.quantity + 1
-                // }
                 ...state.map(item => item.id === action.id ? 
                     { ...item,
                       quantity: item.quantity < item.stockCount ? item.quantity + 1 : item.quantity } : 
