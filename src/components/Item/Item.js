@@ -53,7 +53,7 @@ const Item = () => {
 
 
     return (
-        <div className='container'>
+        <div className='item-container'>
             <div className='product-img'>
                 <img src={ item.imageUrl } alt={ item.name }/>
             </div>
@@ -67,8 +67,6 @@ const Item = () => {
                     <Button onClick = { handleSubmit }
                             label = 'Add to cart'/>
                 {/* </form> */}
-                <p>{ console.log('Item') }</p>
-                {/* <Notification message={ message }/> */}
                 
             </div>
         </div>
