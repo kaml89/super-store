@@ -43,7 +43,9 @@ const NotificationProvider = ({ children}) => {
 
 const useNotification = () => {
     const context = useContext(NotificationContext);
-    if (context === undefined) throw new Error('useNotification must be used within NotificationProvider')
+    if (context === undefined) {
+        throw new Error('useNotification must be used within NotificationProvider');
+    }
     return context;
 };
 
