@@ -17,7 +17,7 @@ const cartReducer = (state, action) => {
                       quantity: item.quantity < item.stockCount ? item.quantity + 1 : item.quantity } : 
                     item
                 )
-            ]
+            ];
         
         case 'DECREMENT_QUANTITY': 
             return [
@@ -25,7 +25,7 @@ const cartReducer = (state, action) => {
                     { ...item, quantity: item.quantity - 1 } : 
                     item
                 )
-            ]
+            ];
 
         case 'REMOVE_FROM_CART':
             return [
