@@ -8,7 +8,7 @@ import Item from './components/Item/Item';
 import Checkout from './pages/Checkout/Checkout';
 import { CartProvider } from './context/CartContext'
 import { NotificationProvider } from './context/NotificationContext';
-import Navigation from './components/Navigation';
+import Navigation from './components/Navigation/Navigation';
 import Notification from './components/Notification/Notification';
 
 
