@@ -1,30 +1,26 @@
 import { useCart } from '../../context/CartContext';
 import PropTypes from 'prop-types';
+import './CartItem.css';
 
 const CartItem = ({ item }) => {
     const { addItem, removeItem } = useCart();
 
     return (
-        <div>
-            <img src={ item.imageUrl } alt='img'/>
+        <div className='cart-item-container'>
+            <div className='cart-img'>
+                <img src={ item.imageUrl } alt='img'/>
+            </div>
+            
             <div className='cart-item-info'>
                 <h3 className='cart-item-name'>{ item.name }</h3>
                 <div className='quantity-controller'>
-                    <p>Quantity:</p>
-                    {/* <input type="number" 
-                           className='quantity' 
-                           value={ item.quantity } 
-                           min="1" 
-                           max={ item.stockCount } 
-                        //    onChange={ handleChange }
-                    /> */}
                     <button onClick={ () => addItem(item)}>+</button>
                     <button onClick={ () => removeItem(item.id)}>-</button>
                     <button onClick={ () => removeItem(item.id) }>X</button>
                     <p>{ item.quantity }</p>
                 </div>
             </div>
-            <h2 className='cart-item-price'>{ item.price }</h2>
+            <h2 className='cart-item-price'>${ (item.price * item.quantity).toFixed(2) }</h2>
         </div>
     );
 };
