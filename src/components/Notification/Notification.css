@@ -1,4 +1,49 @@
 .notifications-container {
-    background-color: rgb(61, 201, 26);
+    position: fixed;
     width: 100%;
+}
+
+.notification-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #5cb85c;
+    /* transition: transform .6s ease-in-out; */
+    animation: slide-in-right .7s;
+    height: 50px;
+    opacity: 0.9;
+    color: white;
+    padding: 5px;
+
+}
+
+.notification-image {
+    color: white;
+}
+
+
+
+
+@keyframes slide-in-right {
+	from {
+	  transform: translateX(100%);
+	  
+	}
+	to {
+	  transform: translateX(0);
+	}
+}
+
+@keyframes slide-out-left {
+	from {
+		transform: translateX(0);
+		
+	}
+	to {
+		transform: translateX(-100%);
+	}
+}
+
+@media (min-width: 600px) {
+    
 }

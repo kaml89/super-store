@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNotification } from "../../context/NotificationContext";
+import './Notification.css';
+import checkIcon from '../../assets/check-icon.svg';
 
 const Notification = ({ message }) => {
     const [ visibility, setVisibility ] = useState(true);
@@ -30,7 +32,10 @@ const Notification = ({ message }) => {
 
             <div className='notifications-container'>
                 {notifications.map(item => 
-                    <div key={item.id}>
+                    <div className= 'notification-item' key={item.id}>
+                        <div className='notification-image'>
+                            <img src={ checkIcon } alt='check-icon'/>
+                        </div>
                         { item.message }
                         <button onClick={ () => removeNotification(item.id)}>X</button>
                     </div>
