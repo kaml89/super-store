@@ -50,7 +50,6 @@ const CartProvider = ({ children }) => {
             dispatch({ type: 'INCREMENT_QUANTITY', id: item.id})
         } else {
             dispatch({ type: 'ADD_TO_CART', item });
-
         }
     }
 
