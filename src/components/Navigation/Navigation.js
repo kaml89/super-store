@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useCart } from '../../context/CartContext';
+// import { useCart } from '../../context/CartContext';
 import Navbar from 'react-bootstrap/Navbar'; 
 import Nav from 'react-bootstrap/Nav';
 import { Container } from 'react-bootstrap';
@@ -7,13 +7,13 @@ import './Navigation.css';
 import { ReactComponent as CartIcon } from '../../assets/shopping-cart.svg';
 
 const Navigation = () => {
-    const { cart } = useCart();
-    const getTotalCartItems = ( cart ) => {
-        return cart
-                    .map(item => item.quantity)
-                    .reduce(( prev, curr ) => prev + curr, 0);
+    // const { cart } = useCart();
+    // const getTotalCartItems = ( cart ) => {
+    //     return cart
+    //                 .map(item => item.quantity)
+    //                 .reduce(( prev, curr ) => prev + curr, 0);
 
-    };
+    // };
 
     return (
         <div>
