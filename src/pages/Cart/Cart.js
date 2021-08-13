@@ -1,5 +1,6 @@
 import { useCart } from '../../context/CartContext';
 import CartItem from '../../components/CartItem/CartItem';
+import Button from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import './Cart.css';
 
@@ -9,15 +10,18 @@ const Cart = () => {
 
     return (
         <div>
-            <h2>Shopping Cart</h2>
+            <h2 className='cart-header'>Shopping Cart</h2>
             <div className='cart-container'>
                 { cart.map(item => <div className='cart-item'> <CartItem item={ item }/> </div>)}
-                <h2>${ getTotal() }</h2>
-                <Link to='/checkout'>
-                    <button>Checkout</button>
-                </Link>
+                <footer className='cart-summary'>
+                    <Link to='/checkout'>
+                        {/* <button>Checkout</button> */}
+                        <Button label='Checkout'/>
+                    </Link>
+                    <h2>${ getTotal() }</h2>
+                </footer>
+                
             </div>
-            
         </div>
         
     );
