@@ -1,19 +1,11 @@
 import { Link } from 'react-router-dom';
-import { useCart } from '../../context/CartContext';
 import Navbar from 'react-bootstrap/Navbar'; 
 import Nav from 'react-bootstrap/Nav';
 import { Container } from 'react-bootstrap';
 import './Navigation.css';
-import { ReactComponent as CartIcon } from '../../assets/shopping-cart.svg';
+import CartIcon from '../CartIcon/CartIcon';
 
 const Navigation = () => {
-    const { cart } = useCart();
-    const getTotalCartItems = ( cart ) => {
-        return cart
-                    .map(item => item.quantity)
-                    .reduce(( prev, curr ) => prev + curr, 0);
-
-    };
 
     return (
         <div>
@@ -34,10 +26,11 @@ const Navigation = () => {
                     <Nav className="ms-auto">
                         <Nav.Item>
                             <Nav.Link as={Link} to="/cart" >
-                                <div>
-                                    <CartIcon /> 
+                                {/* <div>
+                                    <CartSVG /> 
                                     <span className={ cart.length > 0 ? 'cart-badge' : 'hidden' }>{ getTotalCartItems(cart) }</span>
-                                </div> 
+                                </div>  */}
+                                <CartIcon />
                             </Nav.Link>
                         </Nav.Item>
                     </Nav>

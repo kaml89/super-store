@@ -1,0 +1,11 @@
+.cart-preview-container {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 340px;
+    height: auto;
+    color: black;
+    background-color: white;
+    box-shadow: rgb(77 77 77 / 15%) 0px 2px 8px 0px;
+    /* pointer-events: none; */
+}
