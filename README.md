@@ -9,6 +9,8 @@ E-commerce project built in React using create-react-app CLI. List of functional
 
 App is using data from third party API [Super Store API](https://gp-super-store-api.herokuapp.com/docs/)
 
+[Live preview](https://adoring-curran-b9489f.netlify.app/)
+
 ## Technologies
 
 React, React Router, Context API, hooks, Bootstrap, Netlify
