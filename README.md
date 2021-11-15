@@ -13,7 +13,7 @@ App is using data from third party API [Super Store API](https://gp-super-store-
 
 ## Technologies
 
-React, React Router, Context API, hooks, Bootstrap, Netlify
+React, React Router, Context API, hooks, Bootstrap, Netlify,
 
 
 ## Available Scripts
