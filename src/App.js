@@ -10,6 +10,7 @@ import { CartProvider } from "./context/CartContext";
 import { NotificationProvider } from "./context/NotificationContext";
 import Navigation from "./components/Navigation/Navigation";
 import Notification from "./components/Notification/Notification";
+import Signup from "./pages/Signup/Signup";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/deals" component={Deals} />
               <Route path="/cart" component={Cart} />
               <Route path="/checkout" component={Checkout} />
+              <Route path="/signup" component={Signup} />
               <Route path="/item/:itemId" component={Item} />
             </Switch>
           </Router>
