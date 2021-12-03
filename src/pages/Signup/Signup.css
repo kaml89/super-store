@@ -12,3 +12,8 @@
 .login-redirect-info {
   color: grey;
 }
+
+.form-error-message {
+  font-size: small;
+  color: red;
+}
