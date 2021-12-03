@@ -1,0 +1,19 @@
+.form-container {
+  padding: 60px;
+  width: 500px;
+  height: 100%;
+  -webkit-box-shadow: 8px 8px 24px 0px rgba(90, 79, 66, 0.37);
+  -moz-box-shadow: 8px 8px 24px 0px rgba(90, 79, 66, 0.37);
+  box-shadow: 8px 8px 24px 0px rgba(90, 79, 66, 0.37);
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.signup-redirect-info {
+  color: grey;
+}
+
+.form-error-message {
+  font-size: small;
+  color: red;
+}
