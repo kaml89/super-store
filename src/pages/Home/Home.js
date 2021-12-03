@@ -12,6 +12,7 @@ const Home = () => {
     setIsLoading(true);
     const response = await itemService.get(params);
     setItems(response);
+    console.log(response);
     setIsLoading(false);
   };
 
