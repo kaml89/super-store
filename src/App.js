@@ -8,6 +8,7 @@ import Item from "./components/Item/Item";
 import Checkout from "./pages/Checkout/Checkout";
 import { CartProvider } from "./context/CartContext";
 import { NotificationProvider } from "./context/NotificationContext";
+import { AuthProvider } from "./context/AuthContext";
 import Navigation from "./components/Navigation/Navigation";
 import Notification from "./components/Notification/Notification";
 import Signup from "./pages/Signup/Signup";
@@ -16,23 +17,25 @@ import Login from "./pages/Login/Login";
 function App() {
   return (
     <div className="App">
-      <CartProvider>
-        <NotificationProvider>
-          <Router>
-            <Navigation />
-            <Notification />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/deals" component={Deals} />
-              <Route path="/cart" component={Cart} />
-              <Route path="/checkout" component={Checkout} />
-              <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
-              <Route path="/item/:itemId" component={Item} />
-            </Switch>
-          </Router>
-        </NotificationProvider>
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <NotificationProvider>
+            <Router>
+              <Navigation />
+              <Notification />
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/deals" component={Deals} />
+                <Route path="/cart" component={Cart} />
+                <Route path="/checkout" component={Checkout} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/login" component={Login} />
+                <Route path="/item/:itemId" component={Item} />
+              </Switch>
+            </Router>
+          </NotificationProvider>
+        </CartProvider>
+      </AuthProvider>
     </div>
   );
 }
