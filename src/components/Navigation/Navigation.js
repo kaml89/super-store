@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import { NavDropdown } from "react-bootstrap";
 import { Container } from "react-bootstrap";
 import "./Navigation.css";
 import CartIcon from "../CartIcon/CartIcon";
+import { useAuth } from "../../context/AuthContext";
 
 const Navigation = () => {
+  const { authState, logout } = useAuth();
+
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -31,6 +35,14 @@ const Navigation = () => {
                   Signup
                 </Nav.Link>
               </Nav.Item>
+              <NavDropdown
+                title={authState.userInfo?.name}
+                id="collasible-nav-dropdown"
+              >
+                <NavDropdown.Item onClick={logout} href="#action/3.4">
+                  Logout
+                </NavDropdown.Item>
+              </NavDropdown>
             </Nav>
           </Navbar.Collapse>
           <Nav className="ms-auto">

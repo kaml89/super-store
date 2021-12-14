@@ -17,10 +17,10 @@ import Login from "./pages/Login/Login";
 function App() {
   return (
     <div className="App">
-      <AuthProvider>
-        <CartProvider>
-          <NotificationProvider>
-            <Router>
+      <Router>
+        <AuthProvider>
+          <CartProvider>
+            <NotificationProvider>
               <Navigation />
               <Notification />
               <Switch>
@@ -32,10 +32,10 @@ function App() {
                 <Route path="/login" component={Login} />
                 <Route path="/item/:itemId" component={Item} />
               </Switch>
-            </Router>
-          </NotificationProvider>
-        </CartProvider>
-      </AuthProvider>
+            </NotificationProvider>
+          </CartProvider>
+        </AuthProvider>
+      </Router>
     </div>
   );
 }
