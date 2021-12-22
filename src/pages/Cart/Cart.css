@@ -11,3 +11,7 @@
     justify-content: space-between;
     padding-top: 60px;
 }
+
+.empty-cart-info {
+    text-align: center;
+}
