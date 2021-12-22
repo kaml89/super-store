@@ -1,6 +1,7 @@
 html {
   font-size: 100%;
   box-sizing: border-box;
+  height: 100%;
 }
 
 body {
@@ -9,7 +10,9 @@ body {
   min-height: 100vh;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
@@ -33,6 +36,8 @@ body {
 .page-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
 }
 
 /* .nav {
