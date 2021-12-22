@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import itemService from "../../services/item";
+import itemService from "../../services/item.service";
 import ProductsList from "../../components/ProductsList/ProductsList";
 import Search from "../../components/Search/Search";
 import "./Home.css";
@@ -12,7 +12,6 @@ const Home = () => {
     setIsLoading(true);
     const response = await itemService.get(params);
     setItems(response);
-    console.log(response);
     setIsLoading(false);
   };
 
