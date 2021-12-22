@@ -8,4 +8,21 @@
     background-color: white;
     box-shadow: rgb(77 77 77 / 15%) 0px 2px 8px 0px;
     /* pointer-events: none; */
+    font-size: 14px;
+    display: flex;
+    
+}
+
+.preview-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.preview-item > span {
+    
+}
+
+.preview-total-price {
+    text-align: end;
+    font-weight: 700;
 }
