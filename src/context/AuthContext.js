@@ -39,6 +39,10 @@ const AuthProvider = ({ children }) => {
     return false;
   };
 
+  const isAdmin = () => {
+    return authState.userInfo.role === "admin";
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -46,6 +50,7 @@ const AuthProvider = ({ children }) => {
         setAuthState: (authInfo) => setAuthInfo(authInfo),
         logout,
         isAuthenticated,
+        isAdmin,
       }}
     >
       {children}
