@@ -1,69 +1,52 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import itemService from "../../services/item.service";
 import RatingStars from "../Stars/RatingStars";
 import Button from "../Button/Button";
 import "./Item.css";
 import { useCart } from "../../context/CartContext";
 import { useNotification } from "../../context/NotificationContext";
+import useItem from "../../queries/item/useItem";
 
 const Item = () => {
   const { itemId } = useParams();
-  const [item, setItem] = useState({});
-  // const [ quantity, setQuantity ] = useState(0);
-  // const [ message, setMessage ] = useState(null)
   const { addItem } = useCart();
   const { addNotification } = useNotification();
+  const { data, isLoading } = useItem(itemId);
 
-  // const handleChange = (e) => {
-  //     if (e.target.value > item.stockCount) {
-  //         setMessage('Not enough items in stock');
-  //     } else if (e.target.value < 0) {
-  //         setMessage("Quantity number can't be negative")
-  //     } else {
-  //         setMessage(null);
-  //         setQuantity(parseInt(e.target.value));
-  //     }
-
-  // };
-
-  const handleSubmit = () => {
+  const handleAddToCart = () => {
     // e.preventDefault();
     addItem({
-      name: item.name,
+      name: data.name,
       id: itemId,
-      imageUrl: item.imageUrl,
-      price: item.price,
-      stockCount: item.stockCount,
+      imgUrl: data.imgUrl,
+      price: data.price,
+      stockCount: data.stockCount,
       quantity: 1,
     });
     addNotification("Item has been succesfully added");
   };
 
-  useEffect(() => {
-    const fetchItem = async () => {
-      const response = await itemService.getById(itemId);
-      setItem(response);
-    };
-    fetchItem();
-  }, [itemId]);
-
   return (
-    <div className="item-container">
-      <div className="product-img">
-        <img src={item.imageUrl} alt={item.name} />
-      </div>
-      <div className="info">
-        <h2 className="name">{item.name}</h2>
-        <RatingStars avgRating={item.avgRating} />
-        <p className="description">{item.description}</p>
-        <h3 className="price">${item.price}</h3>
-        {/* <form onSubmit={ handleSumbit }> */}
-        {/* Quantity: <input type="number" className='quantity' min="1" max={ item.stockCount } onChange={ handleChange }/> */}
-        <Button onClick={handleSubmit} label="Add to cart" />
-        {/* </form> */}
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <p>Loading..</p>
+      ) : (
+        <div className="item-container">
+          <div className="product-img">
+            <img src={data.imgUrl} alt={data.name} />
+          </div>
+          <div className="info">
+            <h2 className="name">{data.name}</h2>
+            <RatingStars avgRating={data.avgRating} />
+            <p className="description">{data.description}</p>
+            <h3 className="price">${data.price}</h3>
+            {/* <form onSubmit={ handleSumbit }> */}
+            {/* Quantity: <input type="number" className='quantity' min="1" max={ item.stockCount } onChange={ handleChange }/> */}
+            <Button onClick={handleAddToCart} label="Add to cart" />
+            {/* </form> */}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

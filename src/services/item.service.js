@@ -1,22 +1,50 @@
 import axios from "axios";
+import authHeader from "../utils/authHeader";
 
-//const baseUrl = 'https://gp-super-store-api.herokuapp.com/item/';
-const baseUrl = "https://store-api-k.herokuapp.com/items";
+const itemAxios = axios.create({
+  baseURL: "https://store-api-k.herokuapp.com/items",
+});
 
-const get = async (parameters) => {
-  //   const response = await axios.get(`${baseUrl}/list`, { params: parameters });
-  const response = await axios.get(`${baseUrl}`);
-  console.log(response.data);
+itemAxios.interceptors.request.use((config) => {
+  const token = authHeader();
+  config.headers.Authorization = token;
+
+  return config;
+});
+
+itemAxios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    const code = error && error.response ? error.response.status : 0;
+    if (code >= 400) {
+      console.log("error code", code);
+    }
+    return Promise.reject(error);
+  }
+);
+
+const get = async () => {
+  const response = await itemAxios.get("/");
   return response.data;
 };
 
 const getById = async (id) => {
-  const response = await axios.get(`${baseUrl}/${id}`);
+  const response = await itemAxios.get(`/${id}`);
   return response.data;
 };
 
-const create = async () => {};
+const create = async (newItem) => {
+  const response = await itemAxios.post("/", newItem);
+  return response;
+};
 
-const itemService = { get, getById, create };
+const remove = async (id) => {
+  const response = await itemAxios.delete(`/${id}`);
+  return response;
+};
+
+const itemService = { get, getById, create, remove };
 
 export default itemService;

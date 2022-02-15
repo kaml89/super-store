@@ -3,17 +3,22 @@ import { useForm } from "react-hook-form";
 import { Redirect } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { LoadingButton } from "@mui/lab";
-import Button from "../../components/Button/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 import { useAuth } from "../../context/AuthContext";
 import authService from "../../services/auth.service";
-import "./Login.css";
 
 const LoginSchema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
+  email: yup
+    .string()
+    .email("Must be a valid email")
+    .required("Email is required"),
+  password: yup.string().required("Password is required"),
 });
 
 const Login = () => {
@@ -47,50 +52,54 @@ const Login = () => {
       console.log(error);
     }
   };
-
   return (
     <>
       {redirectOnLogin && <Redirect to="/" />}
-      <div className="form-container">
-        <h2 className="form-header">Log In</h2>
-        <p className="signup-redirect-info">
-          Dont't have an account yet? <Link to={"/signup"}>Sign Up now</Link>
-        </p>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <Form.Group className="mb-3" controlId="formEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter email"
-              {...register("email")}
-            />
-            {errors.email && (
-              <p className="form-error-message">{errors.email.message}</p>
-            )}
-          </Form.Group>
-
-          <Form.Group className="mb-3" controlId="formPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              placeholder="Password"
-              {...register("password")}
-            />
-            {errors.password && (
-              <p className="form-error-message">{errors.password.message}</p>
-            )}
-          </Form.Group>
-
-          {/* <Button label="Log In" isLoading={isLoading} /> */}
-          <LoadingButton
-            // onClick={onSubmit}
-            loading={isLoading}
-            variant="outlined"
-          >
-            Log In
-          </LoadingButton>
-        </Form>
-      </div>
+      <Container maxWidth="sm">
+        <Paper elevation={3} sx={{ p: 4, mt: 4 }}>
+          <Typography variant="h4" color="textPrimary">
+            Login
+          </Typography>
+          <Typography variant="body" color="textSecondary">
+            Don't have an account yet? <Link to={"/signup"}>Sign up</Link>
+          </Typography>
+          <Box>
+            <Typography></Typography>
+          </Box>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Box sx={{ display: "flex", flexDirection: "column", my: 3 }}>
+              <TextField
+                label="Email"
+                variant="outlined"
+                margin="normal"
+                helperText={errors.email && errors.email.message}
+                error={Boolean(errors.email)}
+                {...register("email")}
+              />
+              <TextField
+                label="Password"
+                variant="outlined"
+                margin="normal"
+                type="password"
+                helperText={errors.password && errors.password.message}
+                error={Boolean(errors.password)}
+                {...register("password")}
+              />
+              <Box sx={{ py: 2 }}>
+                <LoadingButton
+                  fullWidth
+                  size="large"
+                  loading={isLoading}
+                  variant="contained"
+                  type="submit"
+                >
+                  Log In
+                </LoadingButton>
+              </Box>
+            </Box>
+          </form>
+        </Paper>
+      </Container>
     </>
   );
 };

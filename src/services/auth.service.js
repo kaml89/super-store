@@ -12,6 +12,7 @@ authAxios.interceptors.response.use(
     const code = error && error.response ? error.response.status : 0;
     if (code >= 400) {
       console.log("error code", code);
+      console.log(error.response.data.message);
     }
     return Promise.reject(error);
   }

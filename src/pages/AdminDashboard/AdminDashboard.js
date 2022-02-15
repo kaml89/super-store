@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 import Items from "./Items/Items";
 import Users from "./Users/Users";
 import "./AdminDashboard.css";
 
 const AdminDashboard = () => {
+  let { url } = useRouteMatch();
   return (
     <div className="admin-dashboard-container">
-      <Router>
-        <Switch>
-          <Route path="/admin/users" component={Users} />
-          <Route path="/admin/items" component={Items} />
-        </Switch>
-      </Router>
+      <Switch>
+        <Route path={`${url}/users`} component={Users} />
+        <Route path={`${url}/items`} component={Items} />
+      </Switch>
     </div>
   );
 };
