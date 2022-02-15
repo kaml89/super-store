@@ -1,8 +1,19 @@
 import "./Button.css";
+import Button from "@mui/material/Button";
 import { Spinner } from "react-bootstrap";
+import CircularProgress from "@mui/material/CircularProgress";
 
-const Button = ({ label, onClick, isLoading = false }) => {
+const CustomButton = ({ label, onClick, isLoading = false }) => {
   return (
+    // <Button
+    //   disabled={isLoading}
+    //   onClick={onClick}
+    //   startIcon={
+    //     isLoading ? <CircularProgress color="inherit" size={25} /> : null
+    //   }
+    // >
+    //   {label}
+    // </Button>
     <button onClick={onClick} className="button">
       {isLoading ? (
         <Spinner
@@ -19,4 +30,4 @@ const Button = ({ label, onClick, isLoading = false }) => {
   );
 };
 
-export default Button;
+export default CustomButton;
