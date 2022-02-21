@@ -45,6 +45,11 @@ const remove = async (id) => {
   return response;
 };
 
-const itemService = { get, getById, create, remove };
+const update = async (updatedItem) => {
+  const response = await itemAxios.put(`/${updatedItem.id}`, updatedItem);
+  return response;
+};
+
+const itemService = { get, getById, create, remove, update };
 
 export default itemService;

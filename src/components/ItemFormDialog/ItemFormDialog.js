@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -11,105 +12,161 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Checkbox from "@mui/material/Checkbox";
 import { FormControl, FormControlLabel } from "@mui/material";
 import useCreateItem from "../../queries/item/useCreateItem";
-import { useForm } from "react-hook-form";
+import useUpdateItem from "../../queries/item/useUpdateItem";
+import { useForm, Controller } from "react-hook-form";
 import CustomButton from "../Button/Button";
 
 const ItemSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
-  price: yup.number().positive().required("Price is required"),
+  price: yup
+
+    .number()
+    .typeError("Price must be a number")
+    .required("Price is required")
+    .positive("Price must be positive number"),
+
   description: yup
     .string()
     .required("Description is required")
     .min(5, "Description must contain at least 5 characters"),
-  imgURL: yup.string().url().required("Image URL is required."),
+  imgUrl: yup
+    .string()
+    .url("Must be valid URL")
+    .required("Image URL is required."),
   isOnSale: yup.boolean(),
   stockCount: yup
     .number()
-    .integer()
-    .positive()
+    .typeError("Stock count must be a number")
+    .integer("Stock count must be a integer")
+    .positive("Stock count must be postive number")
     .required("Stock count is required"),
 });
 
-const ItemFormDialog = ({ open, handleClose, item }) => {
+const ItemFormDialog = ({ open, handleClose, editItem, item }) => {
+  // const [item, setItem] = useState(item);
   const {
     register,
     handleSubmit,
+    reset,
+    control,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(ItemSchema) });
-  const { data, isLoading, mutate } = useCreateItem();
+  } = useForm({
+    resolver: yupResolver(ItemSchema),
+    // defaultValues: { ...item },
+  });
+  const createItem = useCreateItem();
+  const updateItem = useUpdateItem();
 
-  const onSubmit = (formData) => {
-    mutate(formData);
+  const onSubmit = async (formData) => {
+    Object.keys(item).length > 0
+      ? updateItem.mutate({ ...formData })
+      : createItem.mutate(formData);
+
     handleClose();
-    //const { data, isLoading } = useCreateItem();
   };
+
+  useEffect(() => {
+    // item ? reset(item) : reset({});
+    reset(item);
+    console.log(item);
+  }, [open]);
 
   return (
     <div>
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Add new item</DialogTitle>
+      <Dialog open={open} onClose={handleClose} maxWidth="sm">
+        <DialogTitle>Add new item to the store</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <Grid
+              container
+              justifyContent="space-between"
+              spacing={2}
+              columnSpacing={{ xs: 1, sm: 1, md: 1 }}
+            >
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="name"
+                  label="Name"
+                  fullWidth
+                  variant="outlined"
+                  helperText={errors.name && errors.name.message}
+                  error={Boolean(errors.name)}
+                  {...register("name")}
+                />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  id="description"
+                  label="Description"
+                  fullWidth
+                  multiline
+                  rows={4}
+                  variant="outlined"
+                  helperText={errors.description && errors.description.message}
+                  error={Boolean(errors.description)}
+                  {...register("description")}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="price"
+                  label="Price"
+                  variant="outlined"
+                  helperText={errors.price && errors.price.message}
+                  error={Boolean(errors.name)}
+                  {...register("price")}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  id="stockCount"
+                  label="Stock Count"
+                  variant="outlined"
+                  helperText={errors.stockCount && errors.stockCount.message}
+                  error={Boolean(errors.stockCount)}
+                  {...register("stockCount")}
+                />
+              </Grid>
 
-          <FormControl>
-            <TextField
-              id="name"
-              label="Name"
-              variant="outlined"
-              {...register("name")}
-            />
-            <TextField
-              id="price"
-              label="Price"
-              variant="outlined"
-              {...register("price")}
-            />
-            <TextField
-              id="description"
-              label="Description"
-              multiline
-              rows={4}
-              variant="outlined"
-              {...register("description")}
-            />
-            <TextField
-              id="imgUrl"
-              label="Image URL"
-              variant="outlined"
-              {...register("imgUrl")}
-            />
-            <TextField
-              id="stockCount"
-              label="Stock Count"
-              variant="outlined"
-              {...register("stockCount")}
-            />
-            <FormControlLabel
-              control={<Checkbox id="isOnSale" {...register("isOnSale")} />}
-              label="On sale"
-            ></FormControlLabel>
-          </FormControl>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
+              <Grid item xs={12} sm={12}>
+                <TextField
+                  id="imgUrl"
+                  label="Image URL"
+                  variant="outlined"
+                  fullWidth
+                  helperText={errors.imgUrl && errors.imgUrl.message}
+                  error={Boolean(errors.imgUrl)}
+                  {...register("imgUrl")}
+                />
+              </Grid>
+
+              <Grid item>
+                <Controller
+                  name="isOnSale"
+                  control={control}
+                  id="isOnSale"
+                  render={({ field }) => (
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          {...field}
+                          checked={field.value}
+                          // onChange={field.onChange}
+                        />
+                      }
+                      label="On Sale"
+                    />
+                  )}
+                />
+              </Grid>
+            </Grid>
+          </form>
         </DialogContent>
         <DialogActions>
-          <CustomButton
-            onClick={handleSubmit(onSubmit)}
-            label="add item"
-            isLoading={isLoading}
-          />
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit(onSubmit)}>Add Item</Button>
+          <Button onClick={handleSubmit(onSubmit)}>
+            {Object.keys(item).length > 0 ? "Edit Item" : "Add Item"}
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
