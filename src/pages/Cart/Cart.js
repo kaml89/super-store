@@ -1,6 +1,7 @@
 import { useCart } from "../../context/CartContext";
-import CartItem from "../../components/CartItem/CartItem";
+import CartItem from "../../components/Cart/CartItem/CartItem";
 import Button from "../../components/Button/Button";
+import Header from "../../components/Header/Header";
 import { Link } from "react-router-dom";
 import "./Cart.css";
 
@@ -31,6 +32,7 @@ const Cart = () => {
 
   return (
     <div>
+      <Header label="Shopping Cart" />
       {cart.length === 0 ? (
         <h2 className="empty-cart-info"> Your cart is empty </h2>
       ) : (
