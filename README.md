@@ -7,7 +7,7 @@ E-commerce project built in React using create-react-app CLI. List of functional
 * Navigate to items' pages
 
 
-App is using data from external API I created. [store-api](https://github.com/kaml89/store-api)
+App is using data from external API I created [store-api](https://github.com/kaml89/store-api)
 
 ## Technologies
 
