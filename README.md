@@ -1,4 +1,4 @@
-# [super-store](https://adoring-curran-b9489f.netlify.app/)
+# super-store
 
 E-commerce project built in React using create-react-app CLI. List of functionalities includes:
 * Search through list of items
@@ -7,14 +7,11 @@ E-commerce project built in React using create-react-app CLI. List of functional
 * Navigate to items' pages
 
 
-App is using data from third party API [Super Store API](https://gp-super-store-api.herokuapp.com/docs/)
-
-[Live preview](https://adoring-curran-b9489f.netlify.app/)
+App is using data from [store-api](https://github.com/kaml89/store-api), external API I created 
 
 ## Technologies
 
-React, React Router, Context API, hooks, Bootstrap, Netlify,
-
+React, React Router, React Query, Context API, hooks, MaterialUI, Netlify,
 
 ## Available Scripts
 
