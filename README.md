@@ -1,13 +1,21 @@
 # super-store
 
-E-commerce project built in React using create-react-app CLI. List of functionalities includes:
-* Search through list of items
-* Find items that are on sale
-* Add items to shopping cart
-* Navigate to items' pages
+Skeleton of E-commerce app built in React using create-react-app CLI. As of now list of functionalities includes:
+* Authentication system based on JWT stored in localStorage.
+* Finding items that are on sale
+* Adding items to shopping cart
+* Navigating to items' pages
+* Basic admin dashboard that enables modifying and adding new products to the store.
 
 
-App is using data from [store-api](https://github.com/kaml89/store-api), external API I created 
+App is using data from [store-api](https://github.com/kaml89/store-api), external API I created using NodeJS and MongoDB.
+
+Live preview on Netlify [super-store](https://adoring-curran-b9489f.netlify.app/)
+
+### Credentials for testing admin:
+
+**Email:** ```test@test.com```  
+**Password:** ```qwerty123```
 
 ## Technologies
 
