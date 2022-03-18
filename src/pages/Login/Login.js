@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import { useAuth } from "../../context/AuthContext";
 import authService from "../../services/auth.service";
+import { useSnackbar } from "notistack";
 
 const LoginSchema = yup.object().shape({
   email: yup
@@ -22,11 +23,12 @@ const LoginSchema = yup.object().shape({
 });
 
 const Login = () => {
-  const { authState, setAuthState } = useAuth();
-  const [signupSuccess, setSignupSuccess] = useState();
-  const [signupError, setSignupError] = useState();
+  const { setAuthState } = useAuth();
+  // const [signupSuccess, setSignupSuccess] = useState();
+  // const [signupError, setSignupError] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [redirectOnLogin, setRedirectOnLogin] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const {
     register,
     handleSubmit,
@@ -43,12 +45,14 @@ const Login = () => {
         userInfo: data.user,
       });
       setIsLoading(false);
-      console.log(authState);
+      enqueueSnackbar("You are succesfully logged in", { variant: "success" });
+
       setTimeout(() => {
         setRedirectOnLogin(true);
       }, 700);
     } catch (error) {
       setIsLoading(false);
+      enqueueSnackbar("Invalid credentials", { variant: "error" });
       console.log(error);
     }
   };
