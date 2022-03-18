@@ -9,6 +9,7 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
+import Chip from "@mui/material/Chip";
 import EditIcon from "@mui/icons-material/Edit";
 import ItemFormDialog from "../../ItemFormDialog/ItemFormDialog";
 import Header from "../../Header/Header";
@@ -88,7 +89,11 @@ const ItemsList = () => {
                         {item.description}
                       </Box>
                     </TableCell>
-                    <TableCell>{String(item.isOnSale)}</TableCell>
+                    <TableCell>
+                      {item.isOnSale ? (
+                        <Chip size="small" label="On sale" color="secondary" />
+                      ) : null}
+                    </TableCell>
                     <TableCell>
                       <IconButton onClick={() => handleOpen(item)}>
                         <EditIcon />
