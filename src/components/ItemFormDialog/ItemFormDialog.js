@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Button from "@mui/material/Button";
@@ -7,14 +8,12 @@ import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Checkbox from "@mui/material/Checkbox";
-import { FormControl, FormControlLabel } from "@mui/material";
+import FormControlLabel from "@mui/material/FormControlLabel";
 import useCreateItem from "../../queries/item/useCreateItem";
 import useUpdateItem from "../../queries/item/useUpdateItem";
 import { useForm, Controller } from "react-hook-form";
-import CustomButton from "../Button/Button";
 
 const ItemSchema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -43,7 +42,6 @@ const ItemSchema = yup.object().shape({
 });
 
 const ItemFormDialog = ({ open, handleClose, editItem, item }) => {
-  // const [item, setItem] = useState(item);
   const {
     register,
     handleSubmit,
@@ -52,10 +50,9 @@ const ItemFormDialog = ({ open, handleClose, editItem, item }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(ItemSchema),
-    // defaultValues: { ...item },
   });
   const createItem = useCreateItem();
-  const updateItem = useUpdateItem();
+  const updateItem = useUpdateItem(item.id);
 
   const onSubmit = async (formData) => {
     Object.keys(item).length > 0
@@ -66,10 +63,8 @@ const ItemFormDialog = ({ open, handleClose, editItem, item }) => {
   };
 
   useEffect(() => {
-    // item ? reset(item) : reset({});
     reset(item);
-    console.log(item);
-  }, [open]);
+  }, [open, reset, item]);
 
   return (
     <div>
@@ -147,13 +142,7 @@ const ItemFormDialog = ({ open, handleClose, editItem, item }) => {
                   id="isOnSale"
                   render={({ field }) => (
                     <FormControlLabel
-                      control={
-                        <Checkbox
-                          {...field}
-                          checked={field.value}
-                          // onChange={field.onChange}
-                        />
-                      }
+                      control={<Checkbox {...field} checked={field.value} />}
                       label="On Sale"
                     />
                   )}
@@ -171,6 +160,18 @@ const ItemFormDialog = ({ open, handleClose, editItem, item }) => {
       </Dialog>
     </div>
   );
+};
+
+ItemFormDialog.propTypes = {
+  item: PropTypes.shape({
+    imgUrl: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    stockCount: PropTypes.number,
+    id: PropTypes.string,
+  }),
+  open: PropTypes.bool,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default ItemFormDialog;

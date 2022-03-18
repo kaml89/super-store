@@ -1,5 +1,4 @@
 import { CartProvider } from "../context/CartContext";
-import { NotificationProvider } from "../context/NotificationContext";
 import { AuthProvider } from "../context/AuthContext";
 import { ThemeProvider } from "@mui/material/styles";
 import Snackbar from "../components/Snackbar/Snackbar";

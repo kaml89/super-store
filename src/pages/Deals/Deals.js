@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import itemService from "../../services/item.service";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 import ProductsList from "../../components/ProductsList/ProductsList";
 import useItems from "../../queries/item/useItems";
 
@@ -7,15 +6,15 @@ const Deals = () => {
   const { data, isLoading } = useItems();
 
   return (
-    <div>
+    <>
       {isLoading ? (
-        <p>Loading...</p>
+        <LoadingScreen />
       ) : data.filter((item) => item.isOnSale).length !== 0 ? (
         <ProductsList items={data.filter((item) => item.isOnSale)} />
       ) : (
         "Currenty there are no items on sale :("
       )}
-    </div>
+    </>
   );
 };
 

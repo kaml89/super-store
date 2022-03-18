@@ -11,18 +11,19 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import Badge from "@mui/material/Badge";
+// import Badge from "@mui/material/Badge";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+// import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useAuth } from "../../context/AuthContext";
-import { useCart } from "../../context/CartContext";
+// import { useCart } from "../../context/CartContext";
+import CartIcon from "../Cart/CartIcon/CartIcon";
 
 const Navigation = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const { isAuthenticated, isAdmin, logout } = useAuth();
-  const { getTotalQuantity } = useCart();
+  // const { getTotalQuantity } = useCart();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -43,6 +44,8 @@ const Navigation = () => {
 
   return (
     <AppBar position="static">
+      {console.log("kamil1111")}
+
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -119,7 +122,7 @@ const Navigation = () => {
           </Box>
 
           <Box sx={{ display: "flex" }}>
-            <IconButton
+            {/* <IconButton
               size="large"
               aria-label="show-cart"
               color="inherit"
@@ -129,7 +132,8 @@ const Navigation = () => {
               <Badge badgeContent={getTotalQuantity()} color="error">
                 <ShoppingCartIcon />
               </Badge>
-            </IconButton>
+            </IconButton> */}
+            <CartIcon />
             {isAuthenticated() ? (
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
