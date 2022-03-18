@@ -1,7 +1,11 @@
 import { useCart } from "../../../context/CartContext";
 import PropTypes from "prop-types";
 import "./CartItem.css";
-import { Button } from "react-bootstrap";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import ListItem from "@mui/material/ListItem";
 
 const CartItem = ({ item }) => {
   const { addItem, removeItem } = useCart();
@@ -9,32 +13,85 @@ const CartItem = ({ item }) => {
 
   const handleAddItem = () => {
     addItem(item);
-    // console.log(item.stockCount);
-    // updateItem.mutate({ ...item, stockCount: item.stockCount - 1 });
   };
 
   return (
-    <div className="cart-item-container">
-      <div className="cart-img">
-        <img src={item.imgUrl} alt="img" />
-      </div>
+    // <div className="cart-item-container">
+    <ListItem>
+      <Box
+        sx={{
+          height: "auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "15px",
+        }}
+      >
+        <Avatar
+          src={item.imgUrl}
+          variant="square"
+          sx={{ width: 120, height: 120, objectFit: "scale-down" }}
+        />
+        {/* <img src={item.imgUrl} alt="img" /> */}
+      </Box>
 
       <div className="cart-item-info">
-        <h3 className="cart-item-name">{item.name}</h3>
-        <div className="quantity-controller">
-          <Button variant="success" onClick={handleAddItem}>
+        <Typography variant="h5" sx={{ fontWeight: "700", py: "0.5rem" }}>
+          {item.name}
+        </Typography>
+        {/* <h3 className="cart-item-name">{item.name}</h3> */}
+        <Box sx={{ display: "flex" }}>
+          {/* <div className="quantity-controller"> */}
+          <Button
+            color="success"
+            variant="contained"
+            size="large"
+            onClick={handleAddItem}
+          >
             +
           </Button>
-          <p>{item.quantity}</p>
-          <Button variant="danger" onClick={() => removeItem(item.id)}>
+
+          {/* <IconButton color="success" onClick={handleAddItem}>
+            <AddBoxIcon fontSize="large" />
+          </IconButton> */}
+          {/* <p>{item.quantity}</p> */}
+          <Typography variant="h6" sx={{ padding: "1rem" }}>
+            {item.quantity}
+          </Typography>
+
+          {/* <IconButton color="error" onClick={() => removeItem(item.id)}>
+            <IndeterminateCheckBoxIcon fontSize="large" />
+          </IconButton> */}
+          <Button
+            color="error"
+            variant="contained"
+            size="small"
+            onClick={() => removeItem(item.id)}
+          >
             {" - "}
           </Button>
-        </div>
+          {/* </div> */}
+        </Box>
       </div>
-      <h2 className="cart-item-price">
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "end",
+          alignItems: "center",
+          flexGrow: 3,
+          textAlign: "end",
+        }}
+      >
+        <Typography variant="h4" sx={{ fontWeight: "500", py: "0.5rem" }}>
+          ${(item.price * item.quantity).toFixed(2)}
+        </Typography>
+      </Box>
+
+      {/* <h2 className="cart-item-price">
         ${(item.price * item.quantity).toFixed(2)}
-      </h2>
-    </div>
+      </h2> */}
+      {/* </div> */}
+    </ListItem>
   );
 };
 
