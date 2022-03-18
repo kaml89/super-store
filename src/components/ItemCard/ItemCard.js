@@ -33,7 +33,7 @@ const ItemCard = ({ imgUrl, name, price, id }) => {
 };
 
 ItemCard.propTypes = {
-  avgRating: PropTypes.number.isRequired,
+  avgRating: PropTypes.number,
   imgUrl: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

@@ -15,7 +15,6 @@ const CartIcon = () => {
       component={Link}
       to="/cart"
     >
-      {console.log("dawidd")}
       <Badge badgeContent={getTotalQuantity()} color="error">
         <ShoppingCartIcon />
       </Badge>

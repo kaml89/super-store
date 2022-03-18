@@ -44,8 +44,6 @@ const Navigation = () => {
 
   return (
     <AppBar position="static">
-      {console.log("kamil1111")}
-
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
