@@ -1,12 +1,11 @@
-import React, { createContext, useContext, useReducer } from "react";
-//import item from '../services/item';
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 
 const CartContext = createContext();
 
 const cartReducer = (state, action) => {
   switch (action.type) {
     case "ADD_TO_CART":
-      return [...state, action.item];
+      return [...state, { ...action.item, quantity: 1 }];
 
     case "INCREMENT_QUANTITY":
       return [
@@ -42,9 +41,13 @@ const cartReducer = (state, action) => {
 };
 
 const CartProvider = ({ children }) => {
-  const initialState = [];
+  const initialState = JSON.parse(localStorage.getItem("cart")) || [];
 
   const [cart, dispatch] = useReducer(cartReducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   const addItem = (item) => {
     const cartItem = cart.find((cartItem) => cartItem.id === item.id);
@@ -61,17 +64,23 @@ const CartProvider = ({ children }) => {
       dispatch({ type: "REMOVE_FROM_CART", payload: id });
     } else {
       dispatch({ type: "DECREMENT_QUANTITY", payload: id });
-      console.log(cartItem.quantity);
     }
   };
+
+  // const checkout = () => {};
 
   const getTotal = () =>
     cart
       .reduce((total, item) => total + item.price * item.quantity, 0)
       .toFixed(2);
 
+  const getTotalQuantity = () =>
+    cart.map((item) => item.quantity).reduce((prev, curr) => prev + curr, 0);
+
   return (
-    <CartContext.Provider value={{ cart, addItem, removeItem, getTotal }}>
+    <CartContext.Provider
+      value={{ cart, addItem, removeItem, getTotal, getTotalQuantity }}
+    >
       {children}
     </CartContext.Provider>
   );
