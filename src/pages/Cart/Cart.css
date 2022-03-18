@@ -1,17 +1,17 @@
 .cart-header {
-    padding: 60px 60px 0 60px;
+  padding: 60px 60px 0 60px;
 }
 
 .cart-container {
-    padding: 60px;
+  padding: 10px;
 }
 
 .cart-summary {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 60px;
 }
 
 .empty-cart-info {
-    text-align: center;
+  text-align: center;
 }
