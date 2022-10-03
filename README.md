@@ -10,8 +10,6 @@ Skeleton of E-commerce app built in React using create-react-app CLI. As of now 
 
 App is using data from [store-api](https://github.com/kaml89/store-api), external API I created using NodeJS and MongoDB.
 
-Live preview on Netlify [super-store](https://adoring-curran-b9489f.netlify.app/)
-
 ### Credentials for testing admin:
 
 **Email:** ```test@test.com```  
